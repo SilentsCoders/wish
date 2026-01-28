@@ -1,0 +1,20 @@
+{
+"name": "স্নেহা-শ্রেয়া",
+"short_name": "স্নেহা-শ্রেয়া",
+"start_url": "/wish/",
+"display": "standalone",
+"background_color": "#000000",
+"theme_color": "#0f172a",
+"icons": [
+{
+"src": "/wish/logo.png",
+"sizes": "192x192",
+"type": "image/png"
+},
+{
+"src": "/wish/bg.png",
+"sizes": "512x512",
+"type": "image/png"
+}
+]
+}

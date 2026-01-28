@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉অপেক্ষা করো...🎁</title>
+
+    <!-- web app button installation -->
+    <link rel="manifest" href="/wish/manifest.json">
+    <meta name="theme-color" content="#0f172a">
+
+    <link rel="icon" href="./mk.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Dancing+Script:wght@700&display=swap');
+        
+        body { font-family: 'Hind Siliguri', sans-serif; scroll-behavior: smooth; }
+        .font-magic { font-family: 'Dancing Script', cursive; }
+        .glass-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        
+        .floating { animation: float 4s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body id="main-body" class="bg-gradient-to-br from-gray-900 via-purple-900 to-pink-900 min-h-screen text-white overflow-hidden">
+
+    <section id="countdown-section" class="h-screen flex items-center justify-center p-6 text-center">
+        <div class="glass-card p-10 rounded-3xl shadow-2xl max-w-xl w-full border-t-4 border-pink-500">
+            <h1 class="text-3xl md:text-5xl font-bold mb-8 tracking-wide text-pink-200">অপেক্ষা করো... ম্যাজিক শুরু হতে যাচ্ছে! 🎁</h1>
+            <div id="timer" class="flex gap-4 justify-center font-bold text-2xl md:text-5xl font-mono">
+                </div>
+            <p class="mt-8 text-pink-300/80 italic font-light">খালিদ তোমাদের জন্য একটা সারপ্রাইজ সাজাচ্ছে!</p>
+        </div>
+    </section>
+
+    <section id="wish-section" class="hidden h-screen flex flex-col items-center justify-center text-center p-4">
+        <div class="floating">
+            <h1 class="text-6xl md:text-8xl font-bold text-pink-400 drop-shadow-[0_5px_15px_rgba(255,105,180,0.5)] mb-4">শুভ জন্মদিন!</h1>
+            <h2 class="text-2xl md:text-4xl font-light tracking-widest text-white/90 mb-6">প্রিয় দুই বোন</h2>
+            <div class="mt-4 py-2 px-8 bg-white/10 rounded-full inline-block border border-white/20">
+                <span class="text-xl">অনেক অনেক ভালোবাসা — <span class="font-bold text-pink-300">খালিদ</span> ❤️</span>
+            </div>
+        </div>
+        <p class="text-white/60 text-sm mt-16 animate-pulse italic">নিচে স্ক্রল করে সারপ্রাইজ মেসেজ দেখো ⬇️</p>
+    </section>
+
+    <section id="cards-section" class="hidden min-h-screen py-20 flex flex-col items-center justify-center px-6">
+        <h3 class="text-3xl font-bold text-pink-200 mb-12">তোমাদের জন্য বিশেষ কিছু কথা</h3>
+        
+        <div class="flex flex-col md:flex-row gap-8 w-full max-w-5xl">
+            <div class="glass-card flex-1 p-8 rounded-3xl shadow-2xl border-b-8 border-pink-500 hover:-translate-y-2 transition-transform">
+                <div class="text-5xl mb-4 text-center">👑</div>
+                <h4 class="text-3xl font-bold text-pink-300 mb-4 text-center">[সানজিদা হক শ্রেয়া]</h4>
+                <p class="text-white/80 leading-relaxed text-center text-lg italic">
+                    "তোমার এই বিশেষ দিনে অনেক অনেক ভালোবাসা ❤️। তুমি সবসময় হাসিখুশি থাকো এবং তোমার সব স্বপ্ন সত্যি হোক। আমি সবসময় তোমার পাশে আছি "
+                </p>
+                <p class="mt-8 text-xs text-white/40 uppercase tracking-widest text-center">— তোমার ভাই, খালিদ</p>
+            </div>
+
+            <div class="glass-card flex-1 p-8 rounded-3xl shadow-2xl border-b-8 border-purple-500 hover:-translate-y-2 transition-transform">
+                <div class="text-5xl mb-4 text-center">💎</div>
+                <h4 class="text-3xl font-bold text-purple-300 mb-4 text-center">[সানজানা হক স্নেহা]</h4>
+                <p class="text-white/80 leading-relaxed text-center text-lg italic">
+                    "তোমাকে বলার মতো কিছু নাই 🙂 । একটা কথায় বলবো ভালো হয়ে যাও 😁"
+                </p>
+                <p class="mt-8 text-xs text-white/40 uppercase tracking-widest text-center">— তোমার ভাই, খালিদ</p>
+            </div>
+        </div>
+
+        <footer class="mt-20 text-white/30 text-xs text-center">
+            খালিদ-এর ভালোবাসা দিয়ে তৈরি ❤️
+        </footer>
+    </section>
+
+    <script>
+        // তারিখ সেট: ৪ জুলাই, ২০২৬
+        const targetDate = new Date("July 4, 2026 00:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = `
+                <div class="bg-white/10 px-4 py-2 rounded-lg"><span>${days}</span><p class="text-[10px] opacity-60">দিন</p></div>
+                <div class="bg-white/10 px-4 py-2 rounded-lg"><span>${hours}</span><p class="text-[10px] opacity-60">ঘণ্টা</p></div>
+                <div class="bg-white/10 px-4 py-2 rounded-lg"><span>${minutes}</span><p class="text-[10px] opacity-60">মিনিট</p></div>
+                <div class="text-pink-400 bg-white/10 px-4 py-2 rounded-lg"><span>${seconds}</span><p class="text-[10px] opacity-60 italic">সেকেন্ড</p></div>
+            `;
+
+            if (distance < 0) {
+                clearInterval(x);
+                startCelebration();
+            }
+        }, 1000);
+
+        function startCelebration() {
+            document.getElementById("countdown-section").classList.add("hidden");
+            document.getElementById("wish-section").classList.remove("hidden");
+            document.getElementById("cards-section").classList.remove("hidden");
+            
+            document.getElementById("main-body").classList.remove("overflow-hidden");
+            document.getElementById("main-body").classList.add("overflow-y-auto");
+
+            // কনফেটি বা আতশবাজি ইফেক্ট
+            confetti({ particleCount: 200, spread: 80, origin: { y: 0.6 }, colors: ['#ff69b4', '#9370db', '#ffffff'] });
+
+            var end = Date.now() + (7 * 1000);
+            (function frame() {
+              confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff69b4'] });
+              confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#9370db'] });
+              if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+        }
+
+        // --- টেস্টিং করার জন্য নিচের লাইনটি আনকমেন্ট করুন ---
+        startCelebration();
+    </script>
+     <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker
+                .register("/wish/service-worker.js")
+                .then(() => console.log("Service Worker Registered"));
+        }
+    </script>
+</body>
+</html>
